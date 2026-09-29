@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-<head>
+<<link rel="manifest" href="manifest.json">>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#5b5ce2">
@@ -140,4 +140,10 @@ function toggleTheme(){theme=theme==="dark"?"light":"dark";document.documentElem
 function toast(msg){let t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),2600)}
 renderAll();
 </script>
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("sw.js");
+  });
+}
 </body></html>
