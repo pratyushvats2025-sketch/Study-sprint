@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#5b5ce2">
+<title>StudySprint — Student Notes</title>
+<style>
+:root{--bg:#f6f7fb;--card:#fff;--text:#171827;--muted:#70738a;--line:#e7e8f0;--accent:#5b5ce2;--accent2:#8b5cf6;--soft:#eeefff;--danger:#e05252;--shadow:0 10px 30px #23233a12}
+[data-theme=dark]{--bg:#10111a;--card:#181a27;--text:#f4f4fa;--muted:#a5a7b8;--line:#2b2e3e;--soft:#24264a;--shadow:0 12px 30px #0005}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+button,input,select,textarea{font:inherit}button{cursor:pointer;border:0}.app{min-height:100vh;max-width:1200px;margin:auto}
+header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 18px}.brand{display:flex;gap:10px;align-items:center;font-weight:800;font-size:20px}.logo{width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;display:grid;place-items:center;font-weight:900;box-shadow:0 7px 20px #5b5ce233}
+.nav-actions{display:flex;gap:8px}.iconbtn{width:40px;height:40px;border-radius:12px;background:var(--card);color:var(--text);border:1px solid var(--line)}
+main{padding:20px 16px 90px}.hero{padding:10px 0 18px}.eyebrow{color:var(--accent);font-weight:700;font-size:13px}.hero h1{font-size:30px;line-height:1.12;margin:5px 0}.hero p{color:var(--muted);margin:7px 0 0}
+.search{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 14px;box-shadow:var(--shadow)}.search input{border:0;outline:0;background:transparent;color:var(--text);width:100%}
+.filters{display:flex;gap:8px;overflow:auto;padding:13px 0 4px;scrollbar-width:none}.chip{white-space:nowrap;padding:8px 13px;border-radius:999px;background:var(--card);border:1px solid var(--line);color:var(--muted)}.chip.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.section-head{display:flex;align-items:center;justify-content:space-between;margin:24px 0 12px}.section-head h2{font-size:18px;margin:0}.link{color:var(--accent);background:none}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:var(--shadow);transition:.18s transform}.card:active{transform:scale(.985)}
+.thumb{height:112px;background:linear-gradient(135deg,#dfe4ff,#f0e6ff);position:relative;display:grid;place-items:center;color:#4c4fd2;font-size:34px}.thumb img{width:100%;height:100%;object-fit:cover}.badge{position:absolute;top:9px;right:9px;padding:4px 8px;border-radius:8px;font-size:11px;font-weight:800;background:#fff;color:#3638a5}.badge.paid{color:#a45c00;background:#fff2d7}
+.card-body{padding:11px}.subject{font-size:11px;color:var(--accent);font-weight:800;text-transform:uppercase}.card h3{font-size:15px;margin:3px 0}.meta{color:var(--muted);font-size:12px}.price{font-weight:800;margin-top:7px}.empty{padding:30px;text-align:center;color:var(--muted);background:var(--card);border:1px dashed var(--line);border-radius:16px;grid-column:1/-1}
+.bottom{position:fixed;bottom:0;left:0;right:0;background:var(--card);border-top:1px solid var(--line);z-index:25}.bottom-inner{max-width:650px;margin:auto;display:grid;grid-template-columns:repeat(4,1fr)}.navitem{background:none;color:var(--muted);padding:9px 4px 8px;font-size:11px}.navitem b{display:block;font-size:20px;line-height:20px}.navitem.active{color:var(--accent)}
+.view{display:none}.view.active{display:block}.btn{padding:11px 15px;border-radius:12px;font-weight:750}.primary{background:var(--accent);color:#fff}.secondary{background:var(--soft);color:var(--accent)}.danger{background:#ffe9e9;color:var(--danger)}
+.list{display:grid;gap:10px}.row{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);padding:12px;border-radius:15px}.row-icon{width:44px;height:44px;border-radius:12px;background:var(--soft);display:grid;place-items:center;font-size:20px}.grow{flex:1;min-width:0}.row h3{font-size:14px;margin:0}.row p{font-size:12px;color:var(--muted);margin:2px 0}
+.dashboard{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.stat{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px}.stat strong{font-size:22px}.stat span{display:block;color:var(--muted);font-size:12px}
+.form{display:grid;gap:12px}.field label{display:block;font-size:12px;font-weight:750;margin-bottom:5px}.field input,.field textarea,.field select{width:100%;padding:12px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--text);outline:none}.field textarea{min-height:85px;resize:vertical}.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}.admin-actions{display:flex;gap:8px;flex-wrap:wrap}
+.modal{position:fixed;inset:0;background:#0008;z-index:50;display:none;align-items:flex-end;justify-content:center}.modal.show{display:flex}.sheet{background:var(--card);width:min(760px,100%);max-height:92vh;overflow:auto;border-radius:22px 22px 0 0;padding:18px}.sheet-head{display:flex;justify-content:space-between;align-items:center}.sheet h2{margin:0}.close{background:var(--soft);color:var(--text);border-radius:10px;width:36px;height:36px}.preview{height:60vh;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#222}.preview iframe{width:100%;height:100%;border:0}.note-title{font-size:24px;margin:8px 0}.desc{color:var(--muted)}.toast{position:fixed;left:50%;bottom:76px;transform:translateX(-50%) translateY(15px);background:#1b1c28;color:#fff;padding:10px 15px;border-radius:12px;opacity:0;pointer-events:none;transition:.25s;z-index:100}.toast.show{opacity:1;transform:translateX(-50%)}
+@media(min-width:700px){main{padding:28px 28px 50px}.grid{grid-template-columns:repeat(3,1fr)}.bottom{position:static;border:0;background:transparent}.bottom-inner{position:fixed;left:18px;top:82px;width:180px;display:block}.navitem{width:100%;text-align:left;padding:12px 14px;border-radius:12px;margin-bottom:4px}.navitem b{display:inline;margin-right:10px}.app{max-width:1100px}.main-shell{margin-left:190px}.modal{align-items:center}.sheet{border-radius:22px}}
+@media(max-width:390px){.grid{gap:8px}.card h3{font-size:14px}.thumb{height:100px}.dashboard{gap:7px}}
+</style>
+</head>
+<body>
+<div class="app">
+<header><div class="nav"><div class="brand"><div class="logo">S</div>StudySprint</div><div class="nav-actions"><button class="iconbtn" onclick="toggleTheme()" title="Theme">☾</button><button class="iconbtn" onclick="openAdmin()" title="Creator">＋</button></div></div></header>
+
+<div class="main-shell">
+<main>
+<section id="home" class="view active">
+<div class="hero"><div class="eyebrow">LEARN • ORGANIZE • SPRINT</div><h1>Your study, one place.</h1><p>Find notes, revise chapters and keep your school work organized.</p></div>
+<div class="search">⌕ <input id="searchHome" placeholder="Search notes or chapters..." oninput="renderHome()"></div>
+<div id="filters" class="filters"></div>
+<div class="section-head"><h2>Popular & recent</h2><button class="link" onclick="showView('library')">See all</button></div>
+<div id="homeGrid" class="grid"></div>
+</section>
+
+<section id="library" class="view">
+<div class="hero"><div class="eyebrow">NOTES LIBRARY</div><h1>All your notes</h1><p>Search, filter and open your revision material.</p></div>
+<div class="search">⌕ <input id="searchLibrary" placeholder="Search notes, chapters or subjects..." oninput="renderLibrary()"></div>
+<div id="libraryGrid" class="grid" style="margin-top:14px"></div>
+</section>
+
+<section id="subjects" class="view">
+<div class="hero"><div class="eyebrow">SUBJECTS</div><h1>Pick a subject</h1><p>Jump directly into your chapters.</p></div>
+<div id="subjectList" class="list"></div>
+</section>
+
+<section id="profile" class="view">
+<div class="hero"><div class="eyebrow">STUDENT DASHBOARD</div><h1>My StudySpace</h1><p>Your simple revision overview.</p></div>
+<div class="dashboard"><div class="stat"><strong id="statNotes">0</strong><span>Notes</span></div><div class="stat"><strong id="statSubjects">0</strong><span>Subjects</span></div><div class="stat"><strong id="statFree">0</strong><span>Free notes</span></div></div>
+<div class="section-head"><h2>Quick actions</h2></div>
+<div class="admin-actions"><button class="btn primary" onclick="openAdmin()">＋ Add note</button><button class="btn secondary" onclick="showView('library')">Open library</button></div>
+</section>
+</main></div>
+
+<nav class="bottom"><div class="bottom-inner">
+<button class="navitem active" data-view="home" onclick="showView('home')"><b>⌂</b>Home</button>
+<button class="navitem" data-view="library" onclick="showView('library')"><b>▤</b>Library</button>
+<button class="navitem" data-view="subjects" onclick="showView('subjects')"><b>◈</b>Subjects</button>
+<button class="navitem" data-view="profile" onclick="showView('profile')"><b>●</b>Profile</button>
+</div></nav>
+</div>
+
+<div id="modal" class="modal" onclick="if(event.target.id==='modal')closeModal()"><div class="sheet" id="sheet"></div></div>
+<div id="toast" class="toast"></div>
+
+<script>
+const SUBJECTS=["Maths","Science","English","SST","Sanskrit","Computer"];
+const sample=[
+{id:1,subject:"Maths",chapter:"Algebra",title:"Introduction to Polynomials",description:"Key terms, identities and solved examples for quick revision.",type:"FREE",price:0,thumb:"📐",pdf:""},
+{id:2,subject:"Science",chapter:"Cell Biology",title:"The Fundamental Unit of Life",description:"Cell structure, organelles and their functions.",type:"FREE",price:0,thumb:"🔬",pdf:""},
+{id:3,subject:"English",chapter:"Grammar",title:"Tenses — Complete Revision",description:"Structures, types and examples in a student-friendly format.",type:"PAID",price:29,thumb:"✍️",pdf:""},
+{id:4,subject:"SST",chapter:"Geography",title:"Resources and Development",description:"Important definitions, concepts and exam-ready points.",type:"FREE",price:0,thumb:"🌍",pdf:""},
+{id:5,subject:"Sanskrit",chapter:"व्याकरण",title:"सन्धि — Quick Notes",description:"Simple revision notes with examples.",type:"PAID",price:19,thumb:"📜",pdf:""},
+{id:6,subject:"Computer",chapter:"AI Basics",title:"Artificial Intelligence — Intro",description:"AI basics, applications and important terms.",type:"FREE",price:0,thumb:"💻",pdf:""}
+];
+let notes=JSON.parse(localStorage.getItem("studysprint_notes")||"null")||sample;
+let theme=localStorage.getItem("studysprint_theme")||"light"; document.documentElement.dataset.theme=theme;
+let editingId=null, attachedPdf="";
+
+function save(){localStorage.setItem("studysprint_notes",JSON.stringify(notes))}
+function esc(s){return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+function card(n){
+return `<article class="card" onclick="openNote(${n.id})"><div class="thumb">${n.thumb||"📘"}<span class="badge ${n.type==='PAID'?'paid':''}">${n.type}${n.type==='PAID'?' · ₹'+n.price:''}</span></div><div class="card-body"><div class="subject">${esc(n.subject)} · ${esc(n.chapter)}</div><h3>${esc(n.title)}</h3><div class="meta">${esc(n.description).slice(0,60)}${n.description.length>60?'…':''}</div></div></article>`}
+function renderFilters(){document.getElementById("filters").innerHTML='<button class="chip active" onclick="filterSubject(this,\\'All\\')">All</button>'+SUBJECTS.map(s=>`<button class="chip" onclick="filterSubject(this,'${s}')">${s}</button>`).join("")}
+let activeSubject="All";
+function filterSubject(el,s){activeSubject=s;document.querySelectorAll(".chip").forEach(x=>x.classList.remove("active"));el.classList.add("active");renderHome()}
+function matches(n,q){q=q.toLowerCase();return !q||[n.title,n.subject,n.chapter,n.description].join(" ").toLowerCase().includes(q)}
+function renderHome(){let q=document.getElementById("searchHome").value;let arr=notes.filter(n=>(activeSubject==="All"||n.subject===activeSubject)&&matches(n,q)).slice().reverse();document.getElementById("homeGrid").innerHTML=arr.length?arr.map(card).join(""):`<div class="empty">No notes found. Try another search.</div>`}
+function renderLibrary(){let q=document.getElementById("searchLibrary").value;let arr=notes.filter(n=>matches(n,q));document.getElementById("libraryGrid").innerHTML=arr.length?arr.map(card).join(""):`<div class="empty">No notes found.</div>`}
+function renderSubjects(){document.getElementById("subjectList").innerHTML=SUBJECTS.map(s=>{let count=notes.filter(n=>n.subject===s).length;return `<button class="row" onclick="subjectOpen('${s}')"><div class="row-icon">◈</div><div class="grow"><h3>${s}</h3><p>${count} note${count!==1?'s':''}</p></div><b>›</b></button>`}).join("")}
+function subjectOpen(s){activeSubject=s;showView("home");renderHome();document.getElementById("searchHome").value=""}
+function renderStats(){statNotes.textContent=notes.length;statSubjects.textContent=new Set(notes.map(n=>n.subject)).size;statFree.textContent=notes.filter(n=>n.type==="FREE").length}
+function renderAll(){renderFilters();renderHome();renderLibrary();renderSubjects();renderStats()}
+function showView(id){document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));document.getElementById(id).classList.add("active");document.querySelectorAll(".navitem").forEach(x=>x.classList.toggle("active",x.dataset.view===id));if(id==="home")renderHome();if(id==="library")renderLibrary();if(id==="subjects")renderSubjects();if(id==="profile")renderStats();scrollTo(0,0)}
+function openNote(id){
+let n=notes.find(x=>x.id===id);if(!n)return;
+document.getElementById("sheet").innerHTML=`<div class="sheet-head"><span class="subject">${esc(n.subject)} · ${esc(n.chapter)}</span><button class="close" onclick="closeModal()">×</button></div><h2 class="note-title">${esc(n.title)}</h2><p class="desc">${esc(n.description)}</p><p><b>${n.type}</b>${n.type==="PAID"?" · ₹"+n.price+" demo purchase":""}</p>
+${n.pdf?`<div class="preview"><iframe src="${n.pdf}"></iframe></div><p class="meta">PDF preview is shown above.</p>`:`<div class="empty">📄 No PDF attached to this sample note.</div>`}
+<div class="admin-actions"><button class="btn primary" onclick="${n.type==="PAID"?"demoPurchase("+n.id+")":"closeModal()"}">${n.type==="PAID"?"Purchase demo · ₹"+n.price:"Start studying"}</button>${n.pdf?`<a class="btn secondary" href="${n.pdf}" download="${esc(n.title)}.pdf">Download PDF</a>`:""}</div>`;
+document.getElementById("modal").classList.add("show")
+}
+function demoPurchase(id){let n=notes.find(x=>x.id===id);closeModal();toast(`Demo purchase successful for “${n.title}” — no real payment was made.`)}
+function openAdmin(id=null){
+editingId=id;attachedPdf="";
+let n=id?notes.find(x=>x.id===id):null;
+document.getElementById("sheet").innerHTML=`<div class="sheet-head"><h2>${n?"Edit note":"Creator Studio"}</h2><button class="close" onclick="closeModal()">×</button></div>
+<div class="form" style="margin-top:15px">
+<div class="two"><div class="field"><label>Subject</label><select id="fSubject">${SUBJECTS.map(s=>`<option ${n?.subject===s?"selected":""}>${s}</option>`).join("")}</select></div><div class="field"><label>Chapter / Topic</label><input id="fChapter" value="${esc(n?.chapter||"")}" placeholder="e.g. Algebra"></div></div>
+<div class="field"><label>Title</label><input id="fTitle" value="${esc(n?.title||"")}" placeholder="Note title"></div>
+<div class="field"><label>Description</label><textarea id="fDesc" placeholder="Short description">${esc(n?.description||"")}</textarea></div>
+<div class="two"><div class="field"><label>Thumbnail emoji</label><input id="fThumb" value="${esc(n?.thumb||"📘")}" maxlength="3"></div><div class="field"><label>Access</label><select id="fType" onchange="priceToggle()"><option ${n?.type!=="PAID"?"selected":""}>FREE</option><option ${n?.type==="PAID"?"selected":""}>PAID</option></select></div></div>
+<div class="field" id="priceField"><label>Price (₹) — demo only</label><input id="fPrice" type="number" min="0" value="${n?.price||0}"></div>
+<div class="field"><label>PDF notes</label><input id="fPdf" type="file" accept="application/pdf"><small class="meta">For this browser demo, selected PDFs are stored locally in your browser.</small></div>
+<div class="admin-actions"><button class="btn primary" onclick="saveNote()">${n?"Save changes":"Add note"}</button>${n?`<button class="btn danger" onclick="deleteNote(${n.id})">Delete note</button>`:""}<button class="btn secondary" onclick="closeModal()">Cancel</button></div>
+</div>`;
+document.getElementById("fPdf").onchange=e=>{let file=e.target.files[0];if(file){let r=new FileReader();r.onload=()=>attachedPdf=r.result;r.readAsDataURL(file)}};
+document.getElementById("modal").classList.add("show");priceToggle()
+}
+function priceToggle(){let paid=document.getElementById("fType")?.value==="PAID";if(document.getElementById("priceField"))document.getElementById("priceField").style.display=paid?"block":"none"}
+function saveNote(){
+let title=fTitle.value.trim(),chapter=fChapter.value.trim();if(!title||!chapter){toast("Add a title and chapter first.");return}
+let old=editingId?notes.find(n=>n.id===editingId):null;
+let obj={id:editingId||Date.now(),subject:fSubject.value,chapter,title,description:fDesc.value.trim()||"Student revision note.",thumb:fThumb.value||"📘",type:fType.value,price:fType.value==="PAID"?Number(fPrice.value||0):0,pdf:attachedPdf||old?.pdf||""};
+if(editingId)notes=notes.map(n=>n.id===editingId?obj:n);else notes.push(obj);save();closeModal();renderAll();toast(editingId?"Note updated.":"Note added.")
+}
+function deleteNote(id){if(!confirm("Delete this note?"))return;notes=notes.filter(n=>n.id!==id);save();closeModal();renderAll();toast("Note deleted.")}
+function closeModal(){document.getElementById("modal").classList.remove("show")}
+function toggleTheme(){theme=theme==="dark"?"light":"dark";document.documentElement.dataset.theme=theme;localStorage.setItem("studysprint_theme",theme)}
+function toast(msg){let t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),2600)}
+renderAll();
+</script>
+</body></html>
